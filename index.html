@@ -145,7 +145,7 @@
                 </div>
             </div>
             
-            <div class="stock-labels"><span class="stock-label-left">REMAINING STOCK</span><span class="stock-warning">Only <span id="stock-count">30</span> left!</span></div>
+            <div class="stock-labels"><span class="stock-label-left">REMAINING STOCK</span><span class="stock-warning">Only <span id="stock-count">100</span> left!</span></div>
             <div class="stock-bar"><div class="stock-fill" id="stock-bar-fill"></div></div>
 
             <div class="info-box">
@@ -256,7 +256,7 @@
             };
         }
 
-        // Timer 10:00 countdown
+        // Timer 20:00 countdown
         let seconds = 600; 
         setInterval(() => {
             let m = Math.floor(seconds / 60); 
@@ -265,7 +265,7 @@
             if(seconds > 0) seconds--;
         }, 1000);
 
-        // Stock Dynamic Scarcity (kaybda b 30 w yna9is 1 kola 5 saniwat 7tta ystaqrr f 3)
+        // Stock Dynamic Scarcity (kaybda b 100 w yna9is 1 kola 5 saniwat 7tta ystaqrr f 3)
         let stock = 100;
         setInterval(() => {
             if(stock > 3) {

@@ -141,12 +141,12 @@
                     <span style="font-size: 8px; opacity: 0.8;">LIMITED EDITION BUNDLE</span>
                 </div>
                 <div class="product-display">
-                    <img src="https://i.ibb.co/bjgwP3VM/Creamer-ryze-n-shine-bundle-coffee-creamer-1-1.png">
+                    <img src="https://i.postimg.cc/XJC0c5wQ/Creamer-ryze-n-shine-bundle-coffee-creamer-1.png">
                 </div>
             </div>
             
             <div class="stock-labels"><span class="stock-label-left">REMAINING STOCK</span><span class="stock-warning">Only <span id="stock-count">100</span> left!</span></div>
-            <div class="stock-bar"><div class="stock-fill" id="stock-bar-fill"></div></div>
+            <div class="stock-bar"><div class="stock-fill" id="stock-bar-fill" style="width: 100%;"></div></div>
 
             <div class="info-box">
                 <ul>
@@ -201,7 +201,7 @@
             <div style="font-weight: 800; font-size: 18px; color:#2ecc71; margin-bottom: 20px;">INFORMATION REQUIRED 👇:</div>
             <div id="verification-content">
                 <div class="step-item"><div class="step-number">1</div><div class="step-text">Complete the short survey</div></div>
-                <div class="step-item"><div class="step-number">2</div><div class="step-text">Enter your info (Email or Details) to verify your entry.</div></div>
+                <div class="step-item"><div class="step-number">2</div><div class="step-text">Provide details (Name, Email, Phone, & Address)</div></div>
                 <div class="step-item"><div class="step-number">3</div><div class="step-text">After completing the steps, you will immediately receive an email with your Shipping Tracking Number.</div></div>
             </div>
             <button class="start-btn" style="margin-top:15px;" id="offer-btn">START</button>
@@ -256,8 +256,8 @@
             };
         }
 
-        // Timer 20:00 countdown
-        let seconds = 600; 
+        // Timer 20:00 countdown (1200 seconds)
+        let seconds = 1200; 
         setInterval(() => {
             let m = Math.floor(seconds / 60); 
             let s = seconds % 60;
@@ -271,7 +271,8 @@
             if(stock > 3) {
                 stock -= 1;
                 document.getElementById('stock-count').innerText = stock;
-                document.getElementById('stock-bar-fill').style.width = (stock * 3.33) + "%";
+                // Bar percentage based on max 100
+                document.getElementById('stock-bar-fill').style.width = stock + "%";
             }
         }, 5000);
     </script>
